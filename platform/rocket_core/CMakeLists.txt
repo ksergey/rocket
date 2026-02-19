@@ -1,5 +1,7 @@
 set(TargetName rocket_core)
 
+find_package(fmt REQUIRED)
+
 add_library(${TargetName} STATIC)
 target_compile_features(${TargetName}
   PUBLIC cxx_std_23)
@@ -11,6 +13,8 @@ target_compile_options(${TargetName}
   PUBLIC -Wall -Wextra -Wattributes -Wpedantic -Wstrict-aliasing -Wcast-align -g -fno-rtti)
 target_include_directories(${TargetName}
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(${TargetName}
+  PRIVATE fmt::fmt-header-only)
 
 if (ROCKET_PYTHON)
   set_property(TARGET ${TargetName}
