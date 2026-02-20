@@ -1,5 +1,7 @@
 set(TargetName rocket_core)
 
+option(ROCKET_LOGGER_TSC_CLOCK "Use TSC clock instead of clock_gettime" ON)
+
 find_package(fmt REQUIRED)
 
 add_library(${TargetName} STATIC)
@@ -26,6 +28,11 @@ if (ROCKET_SANITIZER)
     PUBLIC -fsanitize=address,leak,undefined)
   target_link_options(${TargetName}
     PUBLIC -fsanitize=address,leak,undefined)
+endif()
+
+if (ROCKET_LOGGER_TSC_CLOCK)
+  target_compile_definitions(${TargetName}
+    PUBLIC -DROCKET_LOGGER_TSC_CLOCK)
 endif()
 
 file(GLOB_RECURSE Sources "${CMAKE_CURRENT_SOURCE_DIR}/rocket/*.cpp")
