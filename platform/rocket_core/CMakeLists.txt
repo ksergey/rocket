@@ -16,7 +16,7 @@ target_compile_options(${TargetName}
 target_include_directories(${TargetName}
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(${TargetName}
-  PRIVATE fmt::fmt-header-only)
+  PRIVATE fmt::fmt)
 
 if (ROCKET_PYTHON)
   set_property(TARGET ${TargetName}
