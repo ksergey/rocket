@@ -2,8 +2,6 @@ set(TargetName rocket_core)
 
 option(ROCKET_LOGGER_TSC_CLOCK "Use TSC clock instead of clock_gettime" ON)
 
-find_package(fmt REQUIRED)
-
 add_library(${TargetName} STATIC)
 target_compile_features(${TargetName}
   PUBLIC cxx_std_23)
@@ -38,13 +36,11 @@ endif()
 file(GLOB_RECURSE Sources "${CMAKE_CURRENT_SOURCE_DIR}/rocket/*.cpp")
 file(GLOB_RECURSE Headers "${CMAKE_CURRENT_SOURCE_DIR}/rocket/*.h")
 
-find_package(doctest REQUIRED)
 RocketAddTestsFromSourceList(Sources
   PREFIX ${TargetName}
   COMPILE_OPTIONS -Wall -Wextra -g
   LIBS doctest::doctest_with_main ${TargetName})
 
-find_package(benchmark REQUIRED)
 RocketAddBenchmarksFromSourceList(Sources
   PREFIX ${TargetName}
   COMPILE_OPTIONS -Wall -Wextra -g
