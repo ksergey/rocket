@@ -1,30 +1,40 @@
 include(FetchContent)
 
 if (NOT TARGET doctest::doctest_with_main)
-  FetchContent_Declare(doctest
-    URL https://github.com/doctest/doctest/archive/refs/tags/v2.4.12.tar.gz
-    EXCLUDE_FROM_ALL
-    SYSTEM
-  )
-  FetchContent_MakeAvailable(doctest)
+    FetchContent_Declare(doctest
+        URL https://github.com/doctest/doctest/archive/refs/tags/v2.4.12.tar.gz
+        EXCLUDE_FROM_ALL
+        SYSTEM
+    )
+    FetchContent_MakeAvailable(doctest)
 endif()
 
 
 if (NOT TARGET benchmark::benchmark_main)
-  FetchContent_Declare(benchmark
-    URL https://github.com/google/benchmark/archive/refs/tags/v1.8.4.tar.gz
-    EXCLUDE_FROM_ALL
-    SYSTEM
-  )
-  set(BENCHMARK_ENABLE_GTEST_TESTS FALSE)
-  FetchContent_MakeAvailable(benchmark)
+    FetchContent_Declare(benchmark
+        URL https://github.com/google/benchmark/archive/refs/tags/v1.8.4.tar.gz
+        EXCLUDE_FROM_ALL
+        SYSTEM
+    )
+    set(BENCHMARK_ENABLE_GTEST_TESTS FALSE)
+    FetchContent_MakeAvailable(benchmark)
 endif()
 
 if (NOT TARGET fmt::fmt)
-  FetchContent_Declare(fmtlib
-    URL https://github.com/fmtlib/fmt/archive/refs/tags/12.1.0.tar.gz
-    EXCLUDE_FROM_ALL
-    SYSTEM
-  )
-  FetchContent_MakeAvailable(fmtlib)
+    FetchContent_Declare(fmtlib
+        URL https://github.com/fmtlib/fmt/archive/refs/tags/12.1.0.tar.gz
+        EXCLUDE_FROM_ALL
+        SYSTEM
+    )
+    FetchContent_MakeAvailable(fmtlib)
+endif()
+
+if (NOT TARGET nlohmann_json::nlohmann_json)
+    FetchContent_Declare(nlohmann_json
+        URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz
+        EXCLUDE_FROM_ALL
+        SYSTEM
+        OVERRIDE_FIND_PACKAGE
+    )
+    FetchContent_MakeAvailable(nlohmann_json)
 endif()
